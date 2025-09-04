@@ -107,7 +107,7 @@ export default function MarketplaceCarousel() {
                         <h3 className="text-lg font-bold text-slate-900">
                           {role.title}
                         </h3>
-                        <p className="text-sm text-slate-500">{role.desc}</p>
+                        <p className="text-sm text-slate-500 hover:text-blue-700 cursor-pointer">{role.desc}</p>
                       </div>
                     </CardContent>
                   </Card>

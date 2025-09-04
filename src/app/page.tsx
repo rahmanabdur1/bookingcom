@@ -9,7 +9,7 @@ import MarketplaceSection from "./components/MarketplaceSection";
 
 export default function HomePage() {
   return (
-    <div className={cn("relative min-h-screen flex flex-col font-sans bg-slate-50")}>
+    <div className={cn("relative min-h-screen flex flex-col font-font-chakra bg-slate-50")}>
       <Header />
       <HeroSection />
       <CommunitySection />
