@@ -59,7 +59,7 @@ export default function CommunitySection() {
       "text-2xl font-bold text-[#0d171b] mb-6 border-b-3 border-green-800 inline-block pb-1 text-center md:text-left"
     )}
   >
-    Community Highlights
+    Reacents Catches
   </h2>
 
      

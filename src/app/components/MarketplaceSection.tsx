@@ -2,7 +2,14 @@
 
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
-import { cn } from "@/lib/utils"; // <- Added cn import
+import { cn } from "@/lib/utils";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 interface Role {
   title: string;
@@ -50,56 +57,72 @@ const roles: Role[] = [
   },
 ];
 
-export default function MarketplaceSection() {
+export default function MarketplaceCarousel() {
   return (
     <section className="flex flex-1 flex-col bg-white py-16 sm:py-24">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-       <p className="text-sm font-semibold uppercase tracking-wide text-primary-600 border-b-2 border-green-800 inline-block pb-1">
-  Discover Your Role
-</p>
-
+          <p className="text-sm font-semibold uppercase tracking-wide text-primary-600 border-b-2 border-green-800 inline-block pb-1">
+            Discover Your Role
+          </p>
 
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
             Explore the Marketplace
           </h2>
           <p className="mx-auto mt-5 max-w-prose text-xl text-slate-500">
             Find your place in our fishing community. Whether you own a pond,
-            list spots, or offer gear, theres a role for you.
+            list spots, or offer gear, there’s a role for you.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {roles.map((role) => (
-            <Card
-              key={role.title}
-              className={cn(
-                "overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1"
-              )}
-            >
-              <div className="relative h-48 w-full">
-                <Image
-                  src={role.img}
-                  alt={role.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <CardContent className="flex flex-col gap-4 p-6">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-500 text-white">
-                  <span className="material-symbols-outlined text-3xl">
-                    {role.icon}
-                  </span>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <h3 className="text-lg font-bold text-slate-900">
-                    {role.title}
-                  </h3>
-                  <p className="text-sm text-slate-500">{role.desc}</p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        {/* Carousel */}
+        <div className="mt-12 relative">
+          <Carousel>
+            <CarouselContent className="space-x-6">
+              {roles.map((role, index) => (
+                <CarouselItem
+                  key={index}
+                  className="flex-none w-full sm:w-[45%] lg:w-[30%]"
+                >
+                  <Card
+                    className={cn(
+                      "overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1"
+                    )}
+                  >
+                    <div className="relative h-48 w-full">
+                      <Image
+                        src={role.img}
+                        alt={role.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <CardContent className="flex flex-col gap-4 p-6">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-500 text-white">
+                        <span className="material-symbols-outlined text-3xl">
+                          {role.icon}
+                        </span>
+                      </div>
+                      <div className="flex flex-col gap-1">
+                        <h3 className="text-lg font-bold text-slate-900">
+                          {role.title}
+                        </h3>
+                        <p className="text-sm text-slate-500">{role.desc}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+
+            {/* Navigation Buttons */}
+            <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow hover:bg-gray-100">
+              ◀
+            </CarouselPrevious>
+            <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow hover:bg-gray-100">
+              ▶
+            </CarouselNext>
+          </Carousel>
         </div>
       </div>
     </section>
